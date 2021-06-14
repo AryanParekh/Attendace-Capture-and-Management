@@ -58,7 +58,13 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     branch = models.ForeignKey(Branch , on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "( "+str(self.branch)+" ) - "+str(self.sap_id)
+
 class Attendance(models.Model):
     student = models.ForeignKey(Student , on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture , on_delete=models.CASCADE)
     attended = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "( "+str(self.lecture)+" ) - "+str(self.student)+" - "+str(self.attended)

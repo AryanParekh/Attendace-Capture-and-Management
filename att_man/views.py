@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from datetime import datetime
+from django.http import HttpResponse
 
 def adminlogin(request):
     if request.method=="GET":
@@ -33,13 +34,24 @@ def manage_batchlist(request):
         batches = Batch.objects.all().order_by("-starting_year")
         return render(request,'manage_batchlist.html',{"batches":batches})
 
-def manage_branchlist(request, batch):
-    # GET and POST request
-    pass
+def manage_branchlist(request, batch):   
+    if request.method == "GET":
+        branches = Branch.objects.filter(batch = batch)
+        return render(request,'manage_branchlist.html',{'branches':branches})
+    if request.method == "POST":
+        b_id = request.POST['gno']
+        branch_name = request.POST['branch']
+        batch_in = Batch.objects.get(starting_year = batch)
+        branch = Branch.objects.create(b_id=b_id,name=branch_name,batch=batch_in)
+        for sem in range(1,9):
+            Semester.objects.create(semester_number=sem,branch=branch)
+        branches = Branch.objects.filter(batch = batch)
+        return render(request,'manage_branchlist.html',{'branches':branches})
 
 def manage_semesterlist(request, branch):
-    # GET request
-    pass
+    if request.method == "GET":
+        semester = Semester.objects.filter(branch=branch)
+        return render(request,'semesterlist.html',{'semester':semester})
 
 def manage_subjectlist(request, semester):
     if request.method=="GET":
@@ -65,29 +77,43 @@ def manage_lecturelist(request, subject):
         ending_time = request.POST["Etime"]
         topic = request.POST["topic"]
         subject = Subject.objects.get(subject_id=subject)
-        Lecture.objects.create(lecture_no=lecture_no,teacher_name=teacher_name,date=date,starting_time=starting_time,ending_time=ending_time,topic=topic,subject=subject)
+        lec = Lecture.objects.create(lecture_no=lecture_no,teacher_name=teacher_name,date=date,starting_time=starting_time,ending_time=ending_time,topic=topic,subject=subject)
+        semester = Subject.objects.get(subject_id=subject.subject_id).semester
+        branch = Semester.objects.get(id=semester.id).branch
+        student_list = Student.objects.filter(branch=branch)
+        for student in student_list:
+            Attendance.objects.create(student=student,lecture=lec)
         lectures = Lecture.objects.filter(subject=subject)
         return render(request,'manage_lecturelist.html',{"lectures":lectures})
 
-def manage_studentlist(request):
-    # GET request
-    pass
+def manage_studentlist(request,lec_id):
+    if request.method == "GET":
+        subject = Lecture.objects.get(id=lec_id).subject
+        semester = Subject.objects.get(subject_id=subject.subject_id).semester
+        branch = Semester.objects.get(id=semester.id).branch
+        students = []
+        student_list = Student.objects.filter(branch=branch)
+        for student in student_list:
+            attended = str(Attendance.objects.get(student=student,lecture__id=lec_id).attended)
+            students.append((student,attended))
 
-
+        return render(request,'manage_studentlist.html',{"students":students})
 
 def capture_batchlist(request):
     if request.method == "GET":
         batches = Batch.objects.all().order_by("-starting_year")
         return render(request,'capture_batchlist.html',{"batches":batches})
 
-def capture_branchlist(request):
-    # GET request
-    pass
+def capture_branchlist(request,batch):
+    if request.method == "GET":
+        branches = Branch.objects.filter(batch = batch)
+        return render(request,'capture_branchlist.html',{'branches':branches})
 
-def capture_semesterlist(request):
-    # GET request
-    pass
-
+def capture_semesterlist(request,branch):
+    if request.method == "GET":
+        semester = Semester.objects.filter(branch=branch)
+        return render(request,'semesterlist.html',{'semester':semester})
+   
 def capture_subjectlist(request,semester):
     if request.method=="GET":
         subjects = Subject.objects.filter(semester=semester).order_by("subject_id")

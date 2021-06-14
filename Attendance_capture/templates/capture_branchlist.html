@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>BRANCH</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <style >
+      body {
+        margin:10px;
+        background-color: #ccffff
+      }
+      .my-card
+    {
+        position:absolute;
+        left:40%;
+        top:-20px;
+        border-radius:50%;
+    }
+
+    .button1 {
+      align:center;
+      background-color:#004d00 ;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    font-family:'Trebuchet MS', sans-serif;
+
+    }
+    .button2 {
+      align:center;
+      background-color:#004d00 ;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    font-family:'Trebuchet MS', sans-serif;
+    }
+
+    .g
+    {
+    text-align:center;
+    }
+
+
+
+    /* extra code for the popup */
+
+    /* /set styles for the cancel button/ */
+    .cancelbtn {
+        background-color: red;
+        color: white;
+        padding: 15px 20px;
+        margin: 8px 0;
+        cursor: pointer;
+        font-family:'Trebuchet MS', sans-serif;
+text-align:center;
+text-decoration: none;
+
+    }
+.signupbtn {
+ background-color: darkgreen;
+        color: white;
+        padding: 15px 20px;
+        margin: 8px 0;
+        cursor: pointer;
+      font-family:'Trebuchet MS', sans-serif;
+text-align:center;
+text-decoration: none;
+}
+    /* /float cancel and signup buttons and add an equal width/ */
+    .cancelbtn,
+    .signupbtn {
+        float: left;
+        width: 15%;
+    }
+    /* /add padding to container elements/ */
+    .container {
+        padding: 16px;
+    }
+    /* /define the modal’s background/ */
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: white;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+font-family:'Trebuchet MS', sans-serif;
+    }
+    /* /define the modal-content background/ */
+
+    .modal-content {
+        background-color: white;
+        margin: 5% auto 15% auto;
+        border: 1px solid #888;
+        width: 80%;
+    }
+    /* /define the close button/ */
+
+    .close {
+        position: absolute;
+        right: 35px;
+        top: 15px;
+        color: #000;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    /* /define the close hover and focus effects/ */
+
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    </style>
+  </head>
+  <body>
+
+
+    <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Branch<b></h1>
+      <br><br>
+
+
+      <br>
+      <!-- <div class="g" >
+       <a href="" class="button1" >Back</a>
+       <a href="" class="button2" >Add</a>
+
+      </div> -->
+      <div class="g">
+       <a href="" class="button1">Back</a>
+       <!-- <button class="button2" onclick="document.getElementById('id01').style.display='block'" ><b>Add</b></button> -->
+
+      </div>
+
+
+      <br>
+      <br>
+      <Br>
+
+    <div class="jumbotron">
+    <div class="row w-100">
+        {% for branch in branches %}
+            <div class="col-md-3" style="margin-bottom: 70px;">
+                <div class="card border-info mx-sm-1 p-3">
+                    <div class="card border-info shadow text-info p-3 my-card" ><span class="fa " aria-hidden="true"></span></div>
+                    <div class="text-info text-center mt-3"><h4>{{branch.b_id}}</h4></div>
+                    <div class="text-info text-center mt-2"><h1>{{branch.name}}</h1></div>
+                </div>
+            </div>
+            {% endfor %}
+         </div>
+    </div>
+
+
+
+    <!-- adding code -->
+
+    <br>
+
+    
+
+     <script>
+            var modal = document.getElementById('id01');
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+  </body>
+</html>
+
+
+<!-- <div class="card border-info mx-sm-1 p-3" >
+                    <div class="card border-info shadow text-info p-3 my-card"><span class="fa fa-car" aria-hidden="true"></span></div>
+                    <div class="text-info text-center mt-3"><h4>Cars</h4></div>
+                    <div class="text-info text-center mt-2"><h1>234</h1></div>
+                </div> -->
