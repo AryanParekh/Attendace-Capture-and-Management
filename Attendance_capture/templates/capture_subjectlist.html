@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+
+
+
+<style>
+body {
+  background-color: #ccffff 
+}
+* {
+  box-sizing: border-box;
+}
+#batch { margin:auto;
+  font-family: 'Trebuchet MS', sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+#batch td, #batch th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#batch tr{background-color: white;}
+
+#batch tr:hover {background-color: #ddd;}
+
+#batch th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #004d00;
+  color: white;
+}
+.button1 {
+  background-color:#004d00 ;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+font-family:'Trebuchet MS', sans-serif;
+}
+.button2 {
+    background-color:#004d00 ; 
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+width:6.5%;
+font-family:'Trebuchet MS', sans-serif;
+}
+.year
+{
+text-decoration: none;
+color:black;
+}
+.g
+{
+text-align:center;
+}
+/*add full-width input fields*/
+    
+</style>
+</head>
+<body>
+
+
+
+
+  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Subjects<b></h1>
+
+
+<br>
+<br>
+<br>
+
+ <div class="g">
+ <a href="" class="button1">Back</a> 
+ 
+
+</div>
+<br>
+<br>
+<Br>
+<br>
+
+<div class="row">
+  <div class="column">
+    <table id="batch">
+  <tr>
+    <th>#</th>
+    <th>Subject ID</th>
+    <th>Subject Name</th>
+  </tr>
+  {%  for subject in subjects %}
+  <tr>
+    <a href="" class="year" >
+    <td>{{forloop.counter}}</td>
+    <td>{{subject.subject_id}}</td>
+    <td>{{subject.subject_name}}</td>
+    </a>
+  </tr>
+  {% endfor %}
+
+  </tr>
+ 
+</table>
+<br>
+ 
+    
+
+
+
+
+
+
+
+
+
+</body>
+</html>

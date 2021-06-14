@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+ 
+
+
+
+<style>
+body {
+  background-color: #ccffff 
+}
+* {
+  box-sizing: border-box;
+}
+
+.button1 {
+  background-color:#004d00 ;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+font-family:'Trebuchet MS', sans-serif;
+
+}
+.button2{
+  background-color:#004d00 ; 
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+width:6.5%;
+font-family:'Trebuchet MS', sans-serif;
+}
+
+.g
+{
+text-align:center;
+
+}
+.card { 
+margin:auto;
+background-color:white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 70%;
+  border-radius: 5px;
+
+font-family:'Trebuchet MS', sans-serif;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+
+.container {
+  padding: 2px 16px;
+border-left: 6px solid red;
+
+}
+
+</style>
+</head>
+<body>
+
+
+
+
+  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Lectures<b></h1>
+
+
+<br>
+<br>
+<br>
+<div class="g">
+ <a href="" class="button1">Back</a> 
+
+</div>
+
+
+
+
+<br>
+<br>
+
+
+{% for lecture in lectures %}
+<div class="card">
+  
+  <div class="container">
+    <h4><b>Lecture {{lecture.lecture_no}}</b></h4> 
+    <p>Teacher: {{lecture.teacher_name}}</p>
+<p>Date: {{lecture.date}}</p>
+
+<p>Starting Time: {{lecture.starting_time}}</P>
+ <p>Ending Time: {{lecture.ending_time}}</P>
+<p>Topic: {{lecture.topic}}</P>
+  </div>
+</div>
+<Br><Br>
+
+{% endfor %}
+</bodY>
+</html>

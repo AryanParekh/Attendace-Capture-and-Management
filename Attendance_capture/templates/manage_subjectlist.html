@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+
+
+
+<style>
+body {
+  background-color: #ccffff 
+}
+* {
+  box-sizing: border-box;
+}
+#batch { margin:auto;
+  font-family: 'Trebuchet MS', sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+#batch td, #batch th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#batch tr{background-color: white;}
+
+#batch tr:hover {background-color: #ddd;}
+
+#batch th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #004d00;
+  color: white;
+}
+.button1 {
+  background-color:#004d00 ;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+font-family:'Trebuchet MS', sans-serif;
+}
+.button2 {
+    background-color:#004d00 ; 
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+width:6.5%;
+font-family:'Trebuchet MS', sans-serif;
+}
+.year
+{
+text-decoration: none;
+color:black;
+}
+.g
+{
+text-align:center;
+}
+/*add full-width input fields*/
+    input[type=text]
+    {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 2px solid #ccc;
+        box-sizing: border-box;
+    }
+    /* set a style for all buttons*/
+    
+    /*set styles for the cancel button*/
+    .cancelbtn {
+        background-color: red;
+        color: white;
+        padding: 15px 20px;
+        margin: 8px 0;
+        cursor: pointer;
+        font-family:'Trebuchet MS', sans-serif;
+text-align:center;
+text-decoration: none;
+
+    }
+.signupbtn {
+ background-color: darkgreen;
+        color: white;
+        padding: 15px 20px;
+        margin: 8px 0;
+        cursor: pointer;
+      font-family:'Trebuchet MS', sans-serif;
+text-align:center;
+text-decoration: none;
+}
+    /*float cancel and signup buttons and add an equal width*/
+    .cancelbtn,
+    .signupbtn {
+        float: left;
+        width: 15%;
+    }
+    /*add padding to container elements*/
+    .container {
+        padding: 16px;
+    }
+    /*define the modal’s background*/
+     
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: white;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+font-family:'Trebuchet MS', sans-serif;
+    }
+    /*define the modal-content background*/
+     
+    .modal-content {
+        background-color: white;
+        margin: 5% auto 15% auto;
+        border: 1px solid #888;
+        width: 80%;
+    }
+    /*define the close button*/
+     
+    .close {
+        position: absolute;
+        right: 35px;
+        top: 15px;
+        color: #000;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    /*define the close hover and focus effects*/
+     
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+     
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+</style>
+</head>
+<body>
+
+
+
+
+  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Subjects<b></h1>
+
+
+<br>
+<br>
+<br>
+
+ <div class="g">
+ <a href="" class="button1">Back</a> 
+ <button class="button2" onclick="document.getElementById('id01').style.display='block'" ><b>Add</b></button>
+
+</div>
+<br>
+<br>
+<Br>
+<br>
+
+<div class="row">
+  <div class="column">
+    <table id="batch">
+  <tr>
+    <th>#</th>
+    <th>Subject ID</th>
+    <th>Subject Name</th>
+  </tr>
+  {%  for subject in subjects %}
+  <tr>
+    <a href="" class="year" >
+    <td>{{forloop.counter}}</td>
+    <td>{{subject.subject_id}}</td>
+    <td>{{subject.subject_name}}</td>
+    </a>
+  </tr>
+  {% endfor %}
+</table>
+<br>
+ 
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+        <form method ="POST" class="modal-content animate" >
+          {% csrf_token %}
+            <div class="container">
+                <label><b>Subject ID:</b></label>
+                <input type="text"  name="subid"><br><br>
+                <label><b>Subject Name:</b></label>
+                <input type="text"  name="subno"><br><br>
+ 
+              
+ 
+                
+                
+ 
+                <div class="clearfix">
+                    <a href="" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</a>
+                    <button href="" type="submit" class="signupbtn">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+ <script>
+        var modal = document.getElementById('id01');
+ 
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
