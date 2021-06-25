@@ -3,6 +3,7 @@ from att_man.views import *
 
 urlpatterns = [
     path('', redirect_page , name='home'),
+    path('adminlogin/',adminlogin,name='adminlogin'),
     path('capture_students/<int:lec_id>/',capture_students,name="capture_students"),
     path('student_create/',student_create,name="student_create"),
     path('manage_batchlist/',manage_batchlist,name="manage_batchlist"),
