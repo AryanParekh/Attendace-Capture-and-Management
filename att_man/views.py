@@ -61,20 +61,20 @@ def adminlogin(request):
 def redirect_page(request):
     if request.user.is_superuser == False:
         return HttpResponseRedirect('/adminlogin/')
-    return render(request,'redirect_page.html')
+    return render(request,'redirect_page2.html')
 
 def manage_batchlist(request):
     if request.user.is_superuser == False:
         return HttpResponseRedirect('/adminlogin/')
     if request.method == "GET":
         batches = Batch.objects.all().order_by("-starting_year")
-        return render(request,'manage_batchlist.html',{"batches":batches})
+        return render(request,'manage_batchlist2.html',{"batches":batches})
     if request.method == "POST":
         starting_year = request.POST["sno"]
         graduation_year = request.POST["gno"]
         Batch.objects.create(starting_year=starting_year,ending_year=graduation_year)
         batches = Batch.objects.all().order_by("-starting_year")
-        return render(request,'manage_batchlist.html',{"batches":batches})
+        return render(request,'manage_batchlist2.html',{"batches":batches})
 
 def manage_branchlist(request, batch):  
     if request.user.is_superuser == False:
@@ -82,7 +82,7 @@ def manage_branchlist(request, batch):
     if request.method == "GET":
         branches = Branch.objects.filter(batch = batch)
         batch = Batch.objects.get(starting_year=batch)
-        return render(request,'manage_branchlist.html',{'branches':branches,'batch':batch})
+        return render(request,'manage_branchlist2.html',{'branches':branches,'batch':batch})
     if request.method == "POST":
         b_id = request.POST['gno']
         branch_name = request.POST['branch']
@@ -91,7 +91,7 @@ def manage_branchlist(request, batch):
         for sem in range(1,9):
             Semester.objects.create(semester_number=sem,branch=branch)
         branches = Branch.objects.filter(batch = batch)
-        return render(request,'manage_branchlist.html',{'branches':branches,'batch':batch_in})
+        return render(request,'manage_branchlist2.html',{'branches':branches,'batch':batch_in})
 
 def manage_semesterlist(request, branch):
     if request.user.is_superuser == False:
@@ -99,7 +99,7 @@ def manage_semesterlist(request, branch):
     if request.method == "GET":
         semester = Semester.objects.filter(branch=branch)
         branch = Branch.objects.get(b_id=branch)
-        return render(request,'manage_semesterlist.html',{'semester':semester,'branch':branch})
+        return render(request,'manage_semesterlist2.html',{'semester':semester,'branch':branch})
 
 def manage_subjectlist(request, semester):
     if request.user.is_superuser == False:
@@ -107,14 +107,14 @@ def manage_subjectlist(request, semester):
     if request.method=="GET":
         subjects = Subject.objects.filter(semester=semester).order_by("subject_id")
         semester = Semester.objects.get(id=semester)
-        return render(request,'manage_subjectlist.html',{"subjects":subjects,"semester":semester})
+        return render(request,'manage_subjectlist2.html',{"subjects":subjects,"semester":semester})
     if request.method=="POST":
         subject_id = request.POST["subid"]
         subject_name = request.POST["subno"]
         semester = Semester.objects.get(id=semester)
         Subject.objects.create(subject_id=subject_id,subject_name=subject_name,semester=semester)
         subjects = Subject.objects.filter(semester=semester).order_by("subject_id")
-        return render(request,'manage_subjectlist.html',{"subjects":subjects,"semester":semester})
+        return render(request,'manage_subjectlist2.html',{"subjects":subjects,"semester":semester})
 
 def manage_lecturelist(request, subject):
     if request.user.is_superuser == False:
@@ -122,7 +122,7 @@ def manage_lecturelist(request, subject):
     if request.method=="GET":
         lectures = Lecture.objects.filter(subject=subject)
         subject = Subject.objects.get(subject_id=subject)
-        return render(request,'manage_lecturelist.html',{"lectures":lectures,"subject":subject})
+        return render(request,'manage_lecturelist2.html',{"lectures":lectures,"subject":subject})
     if request.method=="POST":
         lecture_no = request.POST["lecno"]
         teacher_name = request.POST["tno"]
@@ -138,7 +138,7 @@ def manage_lecturelist(request, subject):
         for student in student_list:
             Attendance.objects.create(student=student,lecture=lec)
         lectures = Lecture.objects.filter(subject=subject)
-        return render(request,'manage_lecturelist.html',{"lectures":lectures,"subject":subject})
+        return render(request,'manage_lecturelist2.html',{"lectures":lectures,"subject":subject})
 
 def manage_studentlist(request,lec_id):
     if request.user.is_superuser == False:
@@ -154,14 +154,14 @@ def manage_studentlist(request,lec_id):
             attended = str(Attendance.objects.get(student=student,lecture__id=lec_id).attended)
             students.append((student,attended))
 
-        return render(request,'manage_studentlist.html',{"students":students,'lecture':lecture})
+        return render(request,'manage_studentlist2.html',{"students":students,'lecture':lecture})
 
 def capture_batchlist(request):
     if request.user.is_superuser == False:
         return HttpResponseRedirect('/adminlogin/')
     if request.method == "GET":
         batches = Batch.objects.all().order_by("-starting_year")
-        return render(request,'capture_batchlist.html',{"batches":batches})
+        return render(request,'capture_batchlist2.html',{"batches":batches})
 
 def capture_branchlist(request,batch):
     if request.user.is_superuser == False:
@@ -169,7 +169,7 @@ def capture_branchlist(request,batch):
     if request.method == "GET":
         branches = Branch.objects.filter(batch = batch)
         batch = Batch.objects.get(starting_year=batch)
-        return render(request,'capture_branchlist.html',{'branches':branches,'batch':batch})
+        return render(request,'capture_branchlist2.html',{'branches':branches,'batch':batch})
 
 def capture_semesterlist(request,branch):
     if request.user.is_superuser == False:
@@ -177,7 +177,7 @@ def capture_semesterlist(request,branch):
     if request.method == "GET":
         semester = Semester.objects.filter(branch=branch)
         branch = Branch.objects.get(b_id=branch)
-        return render(request,'capture_semesterlist.html',{'semester':semester,'branch':branch})
+        return render(request,'capture_semesterlist2.html',{'semester':semester,'branch':branch})
    
 def capture_subjectlist(request,semester):
     if request.user.is_superuser == False:
@@ -185,7 +185,7 @@ def capture_subjectlist(request,semester):
     if request.method=="GET":
         subjects = Subject.objects.filter(semester=semester).order_by("subject_id")
         semester = Semester.objects.get(id=semester)
-        return render(request,'capture_subjectlist.html',{"subjects":subjects,"semester":semester})
+        return render(request,'capture_subjectlist2.html',{"subjects":subjects,"semester":semester})
 
 def capture_lecturelist(request,subject):
     if request.user.is_superuser == False:
@@ -193,7 +193,7 @@ def capture_lecturelist(request,subject):
     if request.method=="GET":
         lectures = Lecture.objects.filter(subject=subject)
         subject = Subject.objects.get(subject_id=subject)
-        return render(request,'capture_lecturelist.html',{"lectures":lectures,"subject":subject})
+        return render(request,'capture_lecturelist2.html',{"lectures":lectures,"subject":subject})
 
 
 

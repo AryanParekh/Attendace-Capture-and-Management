@@ -358,7 +358,7 @@
   /*SCROLLBAR*/
   /* width */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 12px;
   }
   /* Track */
   ::-webkit-scrollbar-track {

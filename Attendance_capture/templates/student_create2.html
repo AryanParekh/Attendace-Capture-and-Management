@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<title>Create a Student</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100"">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form method="POST" class="login100-form validate-form" enctype="multipart/form-data">
+					{% csrf_token %}
+					<span class="login100-form-title p-b-49">
+						Create a Student
+					</span>
+					{% if error %}<span class="span" style="color: red;">{{error}}</span>{% endif %}
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "SAP ID is required">
+						<span class="label-input100">SAP ID</span>
+						<input class="input100" type="text" name="sap_id" placeholder="Enter the SAP ID">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+                    <div class="wrap-input100 validate-input m-b-23" data-validate = "Name is required">
+						<span class="label-input100">Name</span>
+						<input class="input100" type="text" name="name" placeholder="Enter the name">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+                    <div class="wrap-input100 validate-input m-b-23" data-validate = "Batch is required">
+						<span class="label-input100">Batch</span>
+                        <select style="border: none;" class="input100" name="batch">
+                            {% for b in batch %}
+                            <option value="{{b}}">{{b}}</option>
+                            {% endfor %}
+                        </select>
+					</div>
+                    <div class="wrap-input100 validate-input m-b-23" data-validate = "Branch is required">
+						<span class="label-input100">Branch</span>
+                        <select style="border: none;" class="input100" name="branch">
+                            {% for b in branch %}
+                            <option value="{{b}}">{{b}}</option>
+                            {% endfor %}
+                        </select>
+					</div>
+                    <div class="wrap-input100 validate-input m-b-23" data-validate = "Image is required">
+						<span class="label-input100">Image</span>
+						<input class="input100" type="file" name="photo" accept="image/jpeg">
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button type="submit" class="login100-form-btn">
+								Create the Student
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
