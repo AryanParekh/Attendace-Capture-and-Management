@@ -74,6 +74,7 @@ class Student(models.Model):
 class Attendance(models.Model):
     student = models.ForeignKey(Student , on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture , on_delete=models.CASCADE)
+    time = models.DateTimeField(null=True,blank=True)
     attended = models.BooleanField(default=False)
 
     def __str__(self):

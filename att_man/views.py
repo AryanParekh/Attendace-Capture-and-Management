@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import *
 from datetime import datetime
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 import cv2
 import face_recognition
 import numpy as np
@@ -187,14 +187,14 @@ def capture_attendance(encode_list,sap_ids):
                 if name not in marked_set:
                     time_list.append((name,datetime.now()))
                 marked_set.add(name)
-                break
+                # break
         cv2.imshow('Video Face Detection', frame) 
         c = cv2.waitKey(10) 
         if c == 27: 
             break 
     cap.release() 
-    print(time_list)
     cv2.destroyAllWindows()
+    return time_list
 
 
 def capture_students(request,lec_id):
@@ -203,7 +203,6 @@ def capture_students(request,lec_id):
         subject = lecture.subject
         semester = Subject.objects.get(subject_id=subject.subject_id).semester
         branch = Semester.objects.get(id=semester.id).branch
-        students = []
         sap_ids = []
         encode_list = []
         student_list = Student.objects.filter(branch=branch)
@@ -214,10 +213,15 @@ def capture_students(request,lec_id):
             x[-1] = x[-1][0:-1]
             x = np.float32(x)
             encode_list.append(x)
-            attended = str(Attendance.objects.get(student=student,lecture__id=lec_id).attended)
-            students.append((student,attended))
-        capture_attendance(encode_list,sap_ids)
-        return HttpResponse("test")
+        time_list = capture_attendance(encode_list,sap_ids)
+        for sap_id,time in time_list:
+            student = Student.objects.get(sap_id=sap_id)
+            attendance = Attendance.objects.get(student=student,lecture=lecture)
+            if attendance.attended==False:
+                attendance.attended=True
+                attendance.time=time
+                attendance.save()
+        return HttpResponseRedirect('/manage_studentlist/'+str(lec_id)+'/')
 
 
 

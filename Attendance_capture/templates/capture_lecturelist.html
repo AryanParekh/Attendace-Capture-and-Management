@@ -103,7 +103,7 @@ border-left: 6px solid red;
 {% for lecture in lectures %}
 <div class="card">
   
-  <a style="text-decoration: none;" href="#">
+  <a style="text-decoration: none;" href="{% url 'capture_students' lecture.id %}">
     <!-- DL PART OVER HERE -->
     <div class="container">
       <h4><b>Lecture {{lecture.lecture_no}}</b></h4> 
