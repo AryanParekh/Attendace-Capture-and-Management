@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Semesters</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <style >
+      body {
+        margin:10px;
+        background-color: #ccffff
+      }
+      .my-card
+    {
+        position:absolute;
+        left:40%;
+        top:-20px;
+        border-radius:50%;
+    }
+
+    .button1 {
+      /* text-align:center; */
+      background-color:#004d00 ;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    font-family:'Trebuchet MS', sans-serif;
+
+    }
+    .button2 {
+      /* align:center; */
+      background-color:#004d00 ;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    font-family:'Trebuchet MS', sans-serif;
+    }
+
+    .g
+    {
+    text-align:center;
+    }
+    </style>
+  </head>
+  <body>
+
+
+    <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Management - Batch {{branch.batch.starting_year}} - Branch {{branch.name}} - Semesters<b></h1>
+      <br><br>
+
+
+      <br>
+      <div class="g" >
+       <a href="{% url 'manage_branchlist' branch.batch.starting_year %}" class="button1" >Back</a>
+       <!-- <a href="" class="button2" >Add</a> -->
+
+      </div>
+
+
+      <br>
+      <br>
+      <Br>
+
+    <div class="jumbotron">
+    <div class="row w-100">
+      {% for sem in semester %}
+            <div class="col-md-3" style="margin-bottom: 70px;">
+              <a href="{% url 'manage_subjectlist' sem.id %}" style="text-decoration: none;">
+                <div class="card border-info mx-sm-1 p-3">
+                    <div class="card border-info shadow text-info p-3 my-card" ><span class="fa " aria-hidden="true"></span></div>
+                    <!-- <div class="text-info text-center mt-3"><h4>{{forloop.counter}}</h4></div> -->
+                    <div class="text-info text-center mt-2"><h1>Semster {{sem.semester_number}}</h1></div>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+         </div>
+    </div>
+
+
+  </body>
+</html>
+
+
+<!-- <div class="card border-info mx-sm-1 p-3" >
+                    <div class="card border-info shadow text-info p-3 my-card"><span class="fa fa-car" aria-hidden="true"></span></div>
+                    <div class="text-info text-center mt-3"><h4>Cars</h4></div>
+                    <div class="text-info text-center mt-2"><h1>234</h1></div>
+                </div> -->

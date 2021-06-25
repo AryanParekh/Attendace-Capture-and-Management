@@ -20,8 +20,7 @@ def adminlogin(request):
             return render(request,'adminlogin.html',{"error":"User does not exist"})
 
 def redirect_page(request):
-    # choice between management part and capture part
-    pass
+    return render(request,'redirect_page.html')
 
 def manage_batchlist(request):
     if request.method == "GET":
@@ -37,7 +36,8 @@ def manage_batchlist(request):
 def manage_branchlist(request, batch):   
     if request.method == "GET":
         branches = Branch.objects.filter(batch = batch)
-        return render(request,'manage_branchlist.html',{'branches':branches})
+        batch = Batch.objects.get(starting_year=batch)
+        return render(request,'manage_branchlist.html',{'branches':branches,'batch':batch})
     if request.method == "POST":
         b_id = request.POST['gno']
         branch_name = request.POST['branch']
@@ -46,29 +46,32 @@ def manage_branchlist(request, batch):
         for sem in range(1,9):
             Semester.objects.create(semester_number=sem,branch=branch)
         branches = Branch.objects.filter(batch = batch)
-        return render(request,'manage_branchlist.html',{'branches':branches})
+        return render(request,'manage_branchlist.html',{'branches':branches,'batch':batch_in})
 
 def manage_semesterlist(request, branch):
     if request.method == "GET":
         semester = Semester.objects.filter(branch=branch)
-        return render(request,'semesterlist.html',{'semester':semester})
+        branch = Branch.objects.get(b_id=branch)
+        return render(request,'manage_semesterlist.html',{'semester':semester,'branch':branch})
 
 def manage_subjectlist(request, semester):
     if request.method=="GET":
         subjects = Subject.objects.filter(semester=semester).order_by("subject_id")
-        return render(request,'manage_subjectlist.html',{"subjects":subjects})
+        semester = Semester.objects.get(id=semester)
+        return render(request,'manage_subjectlist.html',{"subjects":subjects,"semester":semester})
     if request.method=="POST":
         subject_id = request.POST["subid"]
         subject_name = request.POST["subno"]
         semester = Semester.objects.get(id=semester)
         Subject.objects.create(subject_id=subject_id,subject_name=subject_name,semester=semester)
         subjects = Subject.objects.filter(semester=semester).order_by("subject_id")
-        return render(request,'manage_subjectlist.html',{"subjects":subjects})
+        return render(request,'manage_subjectlist.html',{"subjects":subjects,"semester":semester})
 
 def manage_lecturelist(request, subject):
     if request.method=="GET":
         lectures = Lecture.objects.filter(subject=subject)
-        return render(request,'manage_lecturelist.html',{"lectures":lectures})
+        subject = Subject.objects.get(subject_id=subject)
+        return render(request,'manage_lecturelist.html',{"lectures":lectures,"subject":subject})
     if request.method=="POST":
         lecture_no = request.POST["lecno"]
         teacher_name = request.POST["tno"]
@@ -84,11 +87,12 @@ def manage_lecturelist(request, subject):
         for student in student_list:
             Attendance.objects.create(student=student,lecture=lec)
         lectures = Lecture.objects.filter(subject=subject)
-        return render(request,'manage_lecturelist.html',{"lectures":lectures})
+        return render(request,'manage_lecturelist.html',{"lectures":lectures,"subject":subject})
 
 def manage_studentlist(request,lec_id):
     if request.method == "GET":
-        subject = Lecture.objects.get(id=lec_id).subject
+        lecture = Lecture.objects.get(id=lec_id)
+        subject = lecture.subject
         semester = Subject.objects.get(subject_id=subject.subject_id).semester
         branch = Semester.objects.get(id=semester.id).branch
         students = []
@@ -97,7 +101,7 @@ def manage_studentlist(request,lec_id):
             attended = str(Attendance.objects.get(student=student,lecture__id=lec_id).attended)
             students.append((student,attended))
 
-        return render(request,'manage_studentlist.html',{"students":students})
+        return render(request,'manage_studentlist.html',{"students":students,'lecture':lecture})
 
 def capture_batchlist(request):
     if request.method == "GET":
@@ -107,22 +111,26 @@ def capture_batchlist(request):
 def capture_branchlist(request,batch):
     if request.method == "GET":
         branches = Branch.objects.filter(batch = batch)
-        return render(request,'capture_branchlist.html',{'branches':branches})
+        batch = Batch.objects.get(starting_year=batch)
+        return render(request,'capture_branchlist.html',{'branches':branches,'batch':batch})
 
 def capture_semesterlist(request,branch):
     if request.method == "GET":
         semester = Semester.objects.filter(branch=branch)
-        return render(request,'semesterlist.html',{'semester':semester})
+        branch = Branch.objects.get(b_id=branch)
+        return render(request,'capture_semesterlist.html',{'semester':semester,'branch':branch})
    
 def capture_subjectlist(request,semester):
     if request.method=="GET":
         subjects = Subject.objects.filter(semester=semester).order_by("subject_id")
-        return render(request,'capture_subjectlist.html',{"subjects":subjects})
+        semester = Semester.objects.get(id=semester)
+        return render(request,'capture_subjectlist.html',{"subjects":subjects,"semester":semester})
 
 def capture_lecturelist(request,subject):
     if request.method=="GET":
         lectures = Lecture.objects.filter(subject=subject)
-        return render(request,'capture_lecturelist.html',{"lectures":lectures})
+        subject = Subject.objects.get(subject_id=subject)
+        return render(request,'capture_lecturelist.html',{"lectures":lectures,"subject":subject})
 
 
 

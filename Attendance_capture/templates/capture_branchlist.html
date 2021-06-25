@@ -144,7 +144,7 @@ font-family:'Trebuchet MS', sans-serif;
   <body>
 
 
-    <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Branch<b></h1>
+    <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Capture - Batch {{batch.starting_year}} - Branch<b></h1>
       <br><br>
 
 
@@ -155,7 +155,7 @@ font-family:'Trebuchet MS', sans-serif;
 
       </div> -->
       <div class="g">
-       <a href="" class="button1">Back</a>
+       <a href="{% url 'capture_batchlist' %}" class="button1">Back</a>
        <!-- <button class="button2" onclick="document.getElementById('id01').style.display='block'" ><b>Add</b></button> -->
 
       </div>
@@ -169,11 +169,13 @@ font-family:'Trebuchet MS', sans-serif;
     <div class="row w-100">
         {% for branch in branches %}
             <div class="col-md-3" style="margin-bottom: 70px;">
+              <a href="{% url 'capture_semesterlist' branch.b_id%}" style="text-decoration: none;">
                 <div class="card border-info mx-sm-1 p-3">
                     <div class="card border-info shadow text-info p-3 my-card" ><span class="fa " aria-hidden="true"></span></div>
                     <div class="text-info text-center mt-3"><h4>{{branch.b_id}}</h4></div>
                     <div class="text-info text-center mt-2"><h1>{{branch.name}}</h1></div>
                 </div>
+                </a>
             </div>
             {% endfor %}
          </div>

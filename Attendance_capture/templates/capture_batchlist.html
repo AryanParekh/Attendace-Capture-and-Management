@@ -84,14 +84,14 @@ text-align:center;
 
 
 
-  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Batch<b></h1>
+  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Capture - Batch<b></h1>
 
 
 <br>
 <br>
 <br>
 <div class="g">
- <a href="" class="button1">Back</a> 
+ <a href="{% url 'home' %}" class="button1">Back</a> 
 
 </div>
 
@@ -112,11 +112,11 @@ text-align:center;
   </tr>
   {% for batch in batches %}
   <tr>
-    <a href="" class="year" >
-    <td>{{forloop.counter}}</td>
-    <td>{{batch.starting_year}}</td>
-    <td>{{batch.ending_year}}</td>
-    </a>
+    <tr>
+      <td><a href="{% url 'capture_branchlist' batch.starting_year %}" style="text-decoration: none;">{{forloop.counter}}</a></td>
+      <td><a href="{% url 'capture_branchlist' batch.starting_year %}" style="text-decoration: none;">{{batch.starting_year}}</a></td>
+      <td><a href="{% url 'capture_branchlist' batch.starting_year %}" style="text-decoration: none;">{{batch.ending_year}}</a></td>
+    </tr>
   </tr>
   {% endfor %}
 </table>

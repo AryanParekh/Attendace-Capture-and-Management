@@ -173,14 +173,14 @@ font-family:'Trebuchet MS', sans-serif;
 
 
 
-  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Lectures<b></h1>
+  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Management - Batch {{subject.semester.branch.batch.starting_year}} - Branch {{subject.semester.branch.name}} - Semester {{subject.semester.semester_number}} - Subject {{subject.subject_name}} - Lectures<b></h1>
 
 
 <br>
 <br>
 <br>
 <div class="g">
- <a href="" class="button1">Back</a> 
+ <a href="{% url 'manage_subjectlist' subject.semester.id %}" class="button1">Back</a> 
  <button class="button2" onclick="document.getElementById('id01').style.display='block'" ><b>Add</b></button>
 </div>
 
@@ -192,16 +192,17 @@ font-family:'Trebuchet MS', sans-serif;
 
 {% for lecture in lectures %}
 <div class="card">
-  
-  <div class="container">
-    <h4><b>Lecture {{lecture.lecture_no}}</b></h4> 
-    <p>Teacher: {{lecture.teacher_name}}</p>
-<p>Date: {{lecture.date}}</p>
+  <a style="text-decoration: none;" href="{% url 'manage_studentlist' lecture.id %}">
+      <div class="container">
+        <h4><b>Lecture {{lecture.lecture_no}}</b></h4> 
+        <p>Teacher: {{lecture.teacher_name}}</p>
+    <p>Date: {{lecture.date}}</p>
 
-<p>Starting Time: {{lecture.starting_time}}</P>
- <p>Ending Time: {{lecture.ending_time}}</P>
-<p>Topic: {{lecture.topic}}</P>
-  </div>
+    <p>Starting Time: {{lecture.starting_time}}</P>
+    <p>Ending Time: {{lecture.ending_time}}</P>
+    <p>Topic: {{lecture.topic}}</P>
+      </div>
+  </a>
 </div>
 <Br><Br>
 

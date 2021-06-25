@@ -173,7 +173,7 @@ font-family:'Trebuchet MS', sans-serif;
 
 
 
-  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Subjects<b></h1>
+  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Management - Batch {{semester.branch.batch.starting_year}} - Branch {{semester.branch.name}} - Semester {{semester.semester_number}} - Subjects<b></h1>
 
 
 <br>
@@ -181,7 +181,7 @@ font-family:'Trebuchet MS', sans-serif;
 <br>
 
  <div class="g">
- <a href="" class="button1">Back</a> 
+ <a href="{% url 'manage_semesterlist' semester.branch.b_id %}" class="button1">Back</a> 
  <button class="button2" onclick="document.getElementById('id01').style.display='block'" ><b>Add</b></button>
 
 </div>
@@ -200,11 +200,9 @@ font-family:'Trebuchet MS', sans-serif;
   </tr>
   {%  for subject in subjects %}
   <tr>
-    <a href="" class="year" >
-    <td>{{forloop.counter}}</td>
-    <td>{{subject.subject_id}}</td>
-    <td>{{subject.subject_name}}</td>
-    </a>
+    <td><a href="{% url 'manage_lecturelist' subject.subject_id %}" style="text-decoration: none;">{{forloop.counter}}</a></td>
+    <td><a href="{% url 'manage_lecturelist' subject.subject_id %}" style="text-decoration: none;">{{subject.subject_id}}</a></td>
+    <td><a href="{% url 'manage_lecturelist' subject.subject_id %}" style="text-decoration: none;">{{subject.subject_name}}</a></td>
   </tr>
   {% endfor %}
 </table>

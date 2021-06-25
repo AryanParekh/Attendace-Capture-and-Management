@@ -59,13 +59,13 @@
   <body>
 
 
-    <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Semesters<b></h1>
+    <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Capture - Batch {{branch.batch.starting_year}} - Branch {{branch.name}} - Semesters<b></h1>
       <br><br>
 
 
       <br>
       <div class="g" >
-       <a href="" class="button1" >Back</a>
+       <a href="{% url 'capture_branchlist' branch.batch.starting_year %}" class="button1" >Back</a>
        <!-- <a href="" class="button2" >Add</a> -->
 
       </div>
@@ -78,13 +78,15 @@
     <div class="jumbotron">
     <div class="row w-100">
       {% for sem in semester %}
-            <div class="col-md-3" style="margin-bottom: 70px;">
-                <div class="card border-info mx-sm-1 p-3">
-                    <div class="card border-info shadow text-info p-3 my-card" ><span class="fa " aria-hidden="true"></span></div>
-                    <!-- <div class="text-info text-center mt-3"><h4>{{forloop.counter}}</h4></div> -->
-                    <div class="text-info text-center mt-2"><h1>Semster {{sem.semester_number}}</h1></div>
-                </div>
-            </div>
+      <div class="col-md-3" style="margin-bottom: 70px;">
+        <a href="{% url 'capture_subjectlist' sem.id %}" style="text-decoration: none;">
+          <div class="card border-info mx-sm-1 p-3">
+              <div class="card border-info shadow text-info p-3 my-card" ><span class="fa " aria-hidden="true"></span></div>
+              <!-- <div class="text-info text-center mt-3"><h4>{{forloop.counter}}</h4></div> -->
+              <div class="text-info text-center mt-2"><h1>Semster {{sem.semester_number}}</h1></div>
+          </div>
+        </a>
+      </div>
             {% endfor %}
          </div>
     </div>

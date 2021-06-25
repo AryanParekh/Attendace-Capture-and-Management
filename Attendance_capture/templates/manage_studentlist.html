@@ -175,7 +175,7 @@ font-family:'Trebuchet MS', sans-serif;
 
 
 
-  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Batch<b></h1>
+  <h1 style="color:#004d00;text-align:center;font-family:'Trebuchet MS', sans-serif;"><b>Manage - Batch {{lecture.subject.semester.branch.batch.starting_year}} - Branch {{lecture.subject.semester.branch.name}} - Semester {{lecture.subject.semester.semester_number}} - Subject {{lecture.subject.subject_name}} - Lecture {{lecture.lecture_no}} - Student List<b></h1>
 
 
 <br>
@@ -184,7 +184,7 @@ font-family:'Trebuchet MS', sans-serif;
 
 
 <div class="g">
- <a href="" class="button1">Back</a>
+ <a href="{% url 'manage_lecturelist' lecture.subject.subject_id %}" class="button1">Back</a>
  <!-- <button class="button2" onclick="document.getElementById('id01').style.display='block'" ><b>Add</b></button> -->
 
 </div>
