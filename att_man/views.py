@@ -2,6 +2,39 @@ from django.shortcuts import render
 from .models import *
 from datetime import datetime
 from django.http import HttpResponse
+import cv2
+import face_recognition
+import numpy as np
+
+BRANCH = [
+    "COMPS",
+    "IT", 
+    "EXTC",
+    "MECH",
+    "BIO",
+    "ELEX",
+    "CHEM",
+]
+
+def student_create(request):
+    if request.method=="GET":
+        batches = Batch.objects.all()
+        return render(request,'student_create.html',{'branch':BRANCH,'batch':batches})
+    if request.method=="POST":
+        batches = Batch.objects.all()
+        sap_id=request.POST["sap_id"]
+        name=request.POST["name"]
+        branch=request.POST["branch"]
+        batch=request.POST["batch"].split("-")[0][0:-1]
+        batch = Batch.objects.get(starting_year=batch)
+        pic=request.FILES.get("photo")
+        branch =  Branch.objects.get(name=branch,batch=batch)
+        student = Student.objects.create(sap_id=sap_id,name=name,branch=branch,image=pic)
+        image = cv2.imread(r'C:\Users\aryan\Desktop\Attendance Capture and Management\Attendance_capture'+student.image.url)
+        face_encod = face_recognition.face_encodings(image)[0]
+        student.description = face_encod
+        student.save()
+        return render(request,'student_create.html',{'branch':BRANCH,'batch':batches})
 
 def adminlogin(request):
     if request.method=="GET":
@@ -131,6 +164,60 @@ def capture_lecturelist(request,subject):
         lectures = Lecture.objects.filter(subject=subject)
         subject = Subject.objects.get(subject_id=subject)
         return render(request,'capture_lecturelist.html',{"lectures":lectures,"subject":subject})
+
+
+
+
+def capture_attendance(encode_list,sap_ids):
+    cap = cv2.VideoCapture(0) 
+    marked_set = set()
+    time_list = []
+    while True: 
+        ret, frame = cap.read(0) 
+        frame_size = cv2.resize(frame,(0,0),None,0.5,0.5)
+        frame_size = cv2.cvtColor(frame_size,cv2.COLOR_BGR2RGB)
+        face_loc = face_recognition.face_locations(frame_size)
+        encode = face_recognition.face_encodings(frame_size,face_loc)
+        for encode_face,face_location in zip(encode,face_loc):
+            matches = face_recognition.compare_faces(encode_list,encode_face)
+            face_dis = face_recognition.face_distance(encode_list,encode_face)
+            match_idx = np.argmin(face_dis)
+            if matches[match_idx]:
+                name = sap_ids[match_idx]
+                if name not in marked_set:
+                    time_list.append((name,datetime.now()))
+                marked_set.add(name)
+                break
+        cv2.imshow('Video Face Detection', frame) 
+        c = cv2.waitKey(10) 
+        if c == 27: 
+            break 
+    cap.release() 
+    print(time_list)
+    cv2.destroyAllWindows()
+
+
+def capture_students(request,lec_id):
+    if request.method == "GET":
+        lecture = Lecture.objects.get(id=lec_id)
+        subject = lecture.subject
+        semester = Subject.objects.get(subject_id=subject.subject_id).semester
+        branch = Semester.objects.get(id=semester.id).branch
+        students = []
+        sap_ids = []
+        encode_list = []
+        student_list = Student.objects.filter(branch=branch)
+        for student in student_list:
+            sap_ids.append(student.sap_id)
+            x = np.array(student.description.split())
+            x[0] = x[0][1:]
+            x[-1] = x[-1][0:-1]
+            x = np.float32(x)
+            encode_list.append(x)
+            attended = str(Attendance.objects.get(student=student,lecture__id=lec_id).attended)
+            students.append((student,attended))
+        capture_attendance(encode_list,sap_ids)
+        return HttpResponse("test")
 
 
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Enter Name</label><input id="name" name="name" type="text">
+        <label for="sap_id">Enter sap</label><input id="sap_id" name="sap_id" type="text">
+        <label for="batch">Choose Batch</label>
+        <select name="batch" id="batch" >
+            {% for b in batch %}
+            <option value="{{b}}">{{b}}</option>
+            {% endfor %}
+        </select>
+        <label for="branch">Choose Branch</label>
+        <select name="branch" id="branch" >
+            {% for b in branch %}
+            <option value="{{b}}">{{b}}</option>
+            {% endfor %}
+        </select>
+        <label for="photo">Pic:</label><input name="photo" id="photo" accept="image/jpeg" type="file">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

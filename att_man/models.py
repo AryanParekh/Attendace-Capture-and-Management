@@ -10,6 +10,14 @@ DEPARTMENT_CHOICES = [
     ("CHEM", "Chemical"),
 ]
 
+
+import os
+def get_upload_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename='{}.{}'.format(str(instance.sap_id),ext)
+    return os.path.join("students", filename)
+
+
 class Batch(models.Model):
     starting_year = models.CharField(max_length=4 , primary_key=True)
     ending_year = models.CharField(max_length=4)
@@ -57,6 +65,8 @@ class Student(models.Model):
     sap_id = models.CharField(max_length=11,primary_key=True)
     name = models.CharField(max_length=100)
     branch = models.ForeignKey(Branch , on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=get_upload_path)
+    description = models.TextField(null=True,blank=True)
 
     def __str__(self):
         return "( "+str(self.branch)+" ) - "+str(self.sap_id)
