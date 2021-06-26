@@ -22,7 +22,7 @@ def student_create(request):
         return HttpResponseRedirect('/adminlogin/')
     if request.method=="GET":
         batches = Batch.objects.all()
-        return render(request,'student_create.html',{'branch':BRANCH,'batch':batches})
+        return render(request,'student_create2.html',{'branch':BRANCH,'batch':batches})
     if request.method=="POST":
         batches = Batch.objects.all()
         sap_id=request.POST["sap_id"]
@@ -40,7 +40,8 @@ def student_create(request):
         face_encod = face_recognition.face_encodings(image)[0]
         student.description = face_encod
         student.save()
-        return render(request,'student_create.html',{'branch':BRANCH,'batch':batches})
+        return HttpResponseRedirect('')
+        # return render(request,'student_create2.html',{'branch':BRANCH,'batch':batches})
 
 def adminlogin(request):
     if request.method=="GET":
@@ -151,8 +152,9 @@ def manage_studentlist(request,lec_id):
         students = []
         student_list = Student.objects.filter(branch=branch)
         for student in student_list:
-            attended = str(Attendance.objects.get(student=student,lecture__id=lec_id).attended)
-            students.append((student,attended))
+            attendance = Attendance.objects.get(student=student,lecture__id=lec_id)
+            attended = str(attendance.attended)
+            students.append((student,attended,attendance.time))
 
         return render(request,'manage_studentlist2.html',{"students":students,'lecture':lecture})
 
@@ -214,8 +216,14 @@ def capture_attendance(encode_list,sap_ids):
             match_idx = np.argmin(face_dis)
             if matches[match_idx]:
                 name = sap_ids[match_idx]
+                y1,x2,y2,x1 = face_loc[0]
+                y1,x2,y2,x1 = y1*2,x2*2,y2*2,x1*2
+                cv2.rectangle(frame,(x1,y1),(x2,y2),(0,255,0),5)
                 if name not in marked_set:
                     time_list.append((name,datetime.now()))
+                    cv2.putText(frame,"Done",(x1+10,y2-10),cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),3)
+                else:
+                    cv2.putText(frame,"Already Done",(x1+10,y2-10),cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),3)
                 marked_set.add(name)
                 # break
         cv2.imshow('Video Face Detection', frame) 

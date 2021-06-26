@@ -1,6 +1,11 @@
 body{
-    background-color: #e9e8ec;
+    height: 100%;
+    /* background-color: #1C2E4A; */
     font-family: sans-serif;
+    background-image:linear-gradient(to bottom,#1C2E4A,rgb(195, 199, 209));
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .table{
     border: 1px solid black;

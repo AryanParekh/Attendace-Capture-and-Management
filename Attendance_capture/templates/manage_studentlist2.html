@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Manage - Semester List</title>
+    <title>Manage - Student List</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
@@ -25,45 +25,19 @@
    <link rel="stylesheet" href="{% static 'css/table.css' %}">
   </head>
   <body>
-    <div style="height: 60px;background-color: #074c74;border-bottom: 2px solid black;"></div>
-    <!-- <div id="id01" class="modal" style="display: none;">
-      <div class="wrapperx2">
-        <br><br>
-        <div class="wrapperx">
-          <span onclick="zindexchanger2()" class="close-span">
-            <i class="fa fa-times" aria-hidden="true"></i>
-          </span>
-          <div class="title">
-            Add a Batch
-          </div>
-          <form method="post" class="form" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="inputfield">
-              <label>Starting Year</label>
-              <input name="sno" type="number" class="input">
-            </div>
-            <div class="inputfield">
-                <label>Ending Year</label>
-                <input name="gno" type="number" class="input">
-            </div>
-            <br>
-            <div class="inputfield">
-              <button id="submitbtn" type="submit" value="Register" class="btn">SUBMIT</button>
-            </div>
-          </form>
-        </div>
-      </div>	
-    </div> -->
+    <!-- <div style="height: 60px;background:linear-gradient(to bottom,rgb(195, 199, 209),#1C2E4A);"></div> -->
+
     <div id="divx">
         <div id="wrap" class="folder">
             <div class="container">
                 <!-- <img width="240px" src="{% static 'img/Logopng.webp' %}" alt=""><br><br> -->
-                <h2>Attendance Management</h2>
-                <h2>{{lecture.subject.semester.branch.batch.starting_year}} - {{lecture.subject.semester.branch.batch.ending_year}}</h2>
-                <h2>{{lecture.subject.semester.branch.name}} - SEMESTER {{lecture.subject.semester.semester_number}}</h2>
-                <h2>{{lecture.subject.subject_name}} - LECTURE {{lecture.lecture_no}}</h2>
-                <h2><b>Student List</b></h2>
+                <h2 style="color:white;">Attendance Management</h2>
+                <h2 style="color:white;">{{lecture.subject.semester.branch.batch.starting_year}} - {{lecture.subject.semester.branch.batch.ending_year}}</h2>
+                <h2 style="color:white;">{{lecture.subject.semester.branch.name}} - SEMESTER {{lecture.subject.semester.semester_number}}</h2>
+                <h2 style="color:white;">{{lecture.subject.subject_name}} - LECTURE {{lecture.lecture_no}}</h2>
+                <h2 style="color:white;"><b>Student List</b></h2>
                 <br><br>
+                <div style="padding: 30px;background:linear-gradient(to bottom,#1C2E4A,rgb(195, 199, 209));border-radius: 10px;box-shadow:0px 0px 3px 3px white;">
                 <a style="float: left !important;text-decoration: none;" href="{% url 'manage_lecturelist' lecture.subject.subject_id %}">
                   <button type="button" class="add">Back</button>
                 </a>
@@ -78,10 +52,11 @@
                    <th>SAP ID</th>
                    <th>Name</th>
                    <th>Attended</th>
+                   <th>Time</th>
                </tr>
                 </thead>
                 <tbody>
-                    {% for student,attended in students %}
+                    {% for student,attended,time in students %}
                     <tr>  
                     <td data-label="Sr.No">{{forloop.counter}}</td>
                     <td data-label="SAP ID">{{student.sap_id}}</td>
@@ -91,9 +66,11 @@
                     {% else %}
                     <td data-label="Attended"><b><span style="color:green">{{attended}}</span></b></td>
                     {% endifequal %}
+                    <td data-label="Time">{{time}}</td>
                     {% endfor %}
                 </tbody>
                 </table>
+                </div>
             </div>
          </div>
     </div>

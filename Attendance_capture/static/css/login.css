@@ -25,7 +25,21 @@
   src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
 }
 
-
+::-webkit-scrollbar {
+  width: 12px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0369a5 ;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0369a5;
+}
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -40,7 +54,11 @@
 body, html {
 	height: 100%;
 	font-family: Poppins-Regular, sans-serif;
-  background-color:#e9e8ec;
+  /* background-color:#1C2E4A; */
+  background-image:linear-gradient(to bottom,#1C2E4A,rgb(195, 199, 209));
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /*---------------------------------------------*/
@@ -109,15 +127,15 @@ textarea:focus:-moz-placeholder { color:transparent; }
 textarea:focus::-moz-placeholder { color:transparent; }
 textarea:focus:-ms-input-placeholder { color:transparent; }
 
-input::-webkit-input-placeholder { color: #adadad;}
-input:-moz-placeholder { color: #adadad;}
-input::-moz-placeholder { color: #adadad;}
-input:-ms-input-placeholder { color: #adadad;}
+input::-webkit-input-placeholder { color: rgb(116, 116, 116);}
+input:-moz-placeholder { color: rgb(116, 116, 116);}
+input::-moz-placeholder { color: rgb(116, 116, 116);}
+input:-ms-input-placeholder { color: rgb(116, 116, 116);}
 
-textarea::-webkit-input-placeholder { color: #adadad;}
-textarea:-moz-placeholder { color: #adadad;}
-textarea::-moz-placeholder { color: #adadad;}
-textarea:-ms-input-placeholder { color: #adadad;}
+textarea::-webkit-input-placeholder { color: rgb(116, 116, 116);}
+textarea:-moz-placeholder { color: rgb(116, 116, 116);}
+textarea::-moz-placeholder { color: rgb(116, 116, 116);}
+textarea:-ms-input-placeholder { color: rgb(116, 116, 116);}
 
 /*---------------------------------------------*/
 button {
@@ -183,7 +201,7 @@ iframe {
 
 .wrap-login100 {
   width: 500px;
-  background: #fff;
+  background: rgb(195, 199, 209);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -200,7 +218,7 @@ iframe {
   display: block;
   font-family: Poppins-Bold;
   font-size: 39px;
-  color: #333333;
+  color: black;
   line-height: 1.2;
   text-align: center;
 }

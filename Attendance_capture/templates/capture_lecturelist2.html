@@ -25,7 +25,7 @@
    <link rel="stylesheet" href="{% static 'css/table.css' %}">
   </head>
   <body>
-    <div style="height: 60px;background-color: #074c74;border-bottom: 2px solid black;"></div>
+    <!-- <div style="height: 60px;background:linear-gradient(to bottom,rgb(195, 199, 209),#1C2E4A);"></div>    -->
     <!-- <div id="id01" class="modal" style="display: none;">
       <div class="wrapperx2">
         <br><br>
@@ -74,12 +74,13 @@
         <div id="wrap" class="folder">
             <div class="container">
                 <!-- <img width="240px" src="{% static 'img/Logopng.webp' %}" alt=""><br><br> -->
-                <h2>Attendance Capture</h2>
-                <h2>{{subject.semester.branch.batch.starting_year}} - {{subject.semester.branch.batch.ending_year}}</h2>
-                <h2>{{subject.semester.branch.name}} - SEMESTER {{subject.semester.semester_number}}</h2>
-                <h2>{{subject.subject_name}}</h2>
-                <h2><b>Lecture List</b></h2>
+                <h2 style="color:white;">Attendance Capture</h2>
+                <h2 style="color:white;">{{subject.semester.branch.batch.starting_year}} - {{subject.semester.branch.batch.ending_year}}</h2>
+                <h2 style="color:white;">{{subject.semester.branch.name}} - SEMESTER {{subject.semester.semester_number}}</h2>
+                <h2 style="color:white;">{{subject.subject_name}}</h2>
+                <h2 style="color:white;"><b>Lecture List</b></h2>
                 <br><br>
+                <div style="padding: 30px;background:linear-gradient(to bottom,#1C2E4A,rgb(195, 199, 209));border-radius: 10px;box-shadow:0px 0px 3px 3px white;">
                 <a style="float: left !important;text-decoration: none;" href="{% url 'capture_subjectlist' subject.semester.id %}">
                   <button type="button" class="add">Back</button>
                 </a>
@@ -108,6 +109,7 @@
                     {% endfor %}
                 </tbody>
                 </table>
+              </div>
             </div>
          </div>
     </div>
