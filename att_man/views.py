@@ -40,7 +40,7 @@ def student_create(request):
         face_encod = face_recognition.face_encodings(image)[0]
         student.description = face_encod
         student.save()
-        return HttpResponseRedirect('')
+        return HttpResponseRedirect('/')
         # return render(request,'student_create2.html',{'branch':BRANCH,'batch':batches})
 
 def adminlogin(request):
