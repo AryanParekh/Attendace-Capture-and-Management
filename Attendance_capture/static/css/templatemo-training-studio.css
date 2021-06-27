@@ -272,7 +272,7 @@ header
   color: #fff;
   font-size: 32px;
   font-weight: 800;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   float: left;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
