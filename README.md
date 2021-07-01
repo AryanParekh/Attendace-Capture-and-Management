@@ -662,13 +662,88 @@ https://medium.com/@ageitgey/machine-learning-is-fun-part-4-modern-face-recognit
 
  Face Recognition Based Student Attendance System with OpenCV CH. VINOD KUMAR1 , DR. K. RAJA KUMAR2 1 PG Scholar, Dept of CS& SE, Andhra University, Vishakhapatnam, AP, India. 2Assistant Professor, Dept of CS& SE, Andhra University, Vishakhapatnam, AP, India.
 
+*********************************************************************************************************************************************************************************
+ 
+ 
 
+ SCREENSHOTS:
+ 
+ <p align="center">Login Page
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Login.PNG" title="Login Page">
+</p>
+ 
+ <p align="center">Home Page
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/HomePage.PNG" title="Home Page">
+</p>
+ 
+ <p align="center">Manage - Batch List (Create)
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Manage%20-%20Batch%20List%20(Create).PNG" title="Manage - Batch List (Create)">
+</p>
+ 
+ <p align="center">Manage - Batch List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Manage%20-%20Batch%20List.PNG" title="Manage - Batch List">
+</p>
+ 
+ <p align="center">Manage - Branch List (Create)
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Manage%20-%20Branch%20List%20(Create).PNG" title="Manage - Branch List (Create)">
+</p>
+ 
+ <p align="center">Manage - Branch List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Manage%20-%20Branch%20List.PNG" title="Manage - Branch List">
+</p>
+ 
+ <p align="center">Create a Student
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Student%20Create.PNG" title="Create a Student">
+</p>
+  
+ <p align="center">Manage - Semester List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Manage%20-%20Semester%20List.PNG" title="Manage - Semester List">
+</p>
+ 
+<p align="center">Manage - Subject List (Create)
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Manage%20-%20Subject%20List%20(Create).PNG" title="Manage - Subject List (Create)">
+</p>
+ 
+<p align="center">Manage - Subject List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Manage%20-%20Subject%20List.PNG" title="Manage - Subject List">
+</p>
+ 
+<p align="center">Manage - Lecture List (Create)
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Manage%20-%20Lecture%20List%20(Create).PNG" title="Manage - Lecture List (Create)">
+</p>
+ 
+<p align="center">Manage - Lecture List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Manage%20-%20Lecture%20List.PNG" title="Manage - Lecture List">
+</p>
+ 
+ <p align="center">Capture - Batch List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Capture%20-%20Batch%20List.PNG" title="Capture - Batch List">
+</p>
+ 
+ <p align="center">Capture - Branch List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Capture%20-%20Branch%20List.PNG" title="Capture - Branch List">
+</p>
+  
+ <p align="center">Capture - Semester List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Capture%20-%20Semester%20List.PNG" title="Capture - Semester List">
+</p>
 
-6. APPENDIX:
+<p align="center">Capture - Subject List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Capture%20-%20Subject%20List.PNG" title="Capture - Subject List">
+</p>
 
-
-https://github.com/AryanParekh/Attendace-Capture-and-Management
-
+<p align="center">Capture - Lecture List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Capture%20-%20Lecture%20List.PNG" title="Capture - Lecture List">
+</p>
+ 
+ <p align="center">Capture - Student Face
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/Capture%20-%20Student%20Face.PNG" title="Capture - Student Face">
+</p>
+ 
+<p align="center">After Capture - Student List
+  <img src="https://github.com/AryanParekh/Attendace-Capture-and-Management/blob/master/screenshots/After%20Capture%20-%20Student%20List.PNG" title="After Capture - Student List">
+</p>
+ 
 
 
 
