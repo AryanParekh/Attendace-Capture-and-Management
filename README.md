@@ -1,45 +1,10 @@
 # Attendace-Capture-and-Management
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 IBM - PROJECT
 
 
 faceUP
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Group:
@@ -54,25 +19,6 @@ Soham Desai     - 60003190058
 
 
 Table of Contents
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 1.1 Aim:
