@@ -10,8 +10,8 @@ faceUP
 Group:
 Aryan Parekh    - 60004190013
 Kartik Suvarna  - 60004190060
-Mayav Antani   - 60004190066
-Rashi Lodha      - 60003190041
+Mayav Antani    - 60004190066
+Rashi Lodha     - 60003190041
 Soham Desai     - 60003190058
 
 
